@@ -332,7 +332,7 @@ app.post('/comparDiv', (req, res) => {
     var resultado = req.body.resultado;
 
 
-    var numero3 = (numero1 * numero2)
+    var numero3 = (numero1 / numero2)
 
     var estado = 0;
 
