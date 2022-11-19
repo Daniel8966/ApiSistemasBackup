@@ -294,6 +294,188 @@ app.post('/comparMulti', (req, res) => {
 
 })
 
+
+
+app.get('/division', (req, res) => {
+    var url = `https://x-math.herokuapp.com/api/div`
+    var resultado = 0;
+    fetch(url)
+        .then(res => res.json())
+        .then(response => {
+            var expresion = (response.expression);
+            var numero1 = response.first;
+            var numero2 = response.second;
+            var respuesta = response.answer;
+            var randomizador = getRandomInt(2);
+            var estatus = 0 ;
+            if (randomizador === 1) {
+                var resultado = response.answer;
+
+                 res.render('division', { expresion, resultado, numero1, numero2, respuesta ,estatus })
+            } else {
+                var resultado = getRandomInt(757);
+
+                 res.render('division', { expresion, resultado, numero1, numero2, respuesta ,estatus })
+            }
+
+
+
+        })
+})
+
+
+app.post('/comparDiv', (req, res) => {
+    var eleccio = req.body.eleccion;
+
+    var numero1 = req.body.numero1;
+    var numero2 = req.body.numero2;
+    var resultado = req.body.resultado;
+
+
+    var numero3 = (numero1 / numero2)
+
+    var estado = 0;
+
+    console.log(numero1 +'*' + numero2 +'=' + resultado +' ?')
+    console.log(numero1 +'*' + numero2 +'=' + numero3 +' !')
+    if (numero3 == resultado) {
+        console.log('en efecto es verdadero')
+        estado = 1
+    } else {
+        console.log('falso')
+    }
+
+    console.log(estado)
+
+    if (eleccio == 0) {
+        console.log('el usuario escogio verdadero')
+        if (estado == 1) {
+            console.log('el usuario escogio bien')
+            var url = `https://x-math.herokuapp.com/api/div`
+            var resultado = 0;
+            fetch(url)
+                .then(res => res.json())
+                .then(response => {
+                    var expresion = (response.expression);
+                    var numero1 = response.first;
+                    var numero2 = response.second;
+                    var respuesta = response.answer;
+                    var randomizador = getRandomInt(2);
+                    var estatus = 1;
+                    if (randomizador === 1) {
+                        var resultado = response.answer;
+
+                         res.render('division', { expresion, resultado, numero1, numero2, respuesta ,estatus })
+                    } else {
+                        var resultado = getRandomInt(757);
+
+                         res.render('division', { expresion, resultado, numero1, numero2, respuesta ,estatus })
+                    }
+
+
+
+                })
+
+        }else{
+            console.log('el usuario escogio mal')
+            var url = `https://x-math.herokuapp.com/api/div`
+            var resultado = 0;
+            fetch(url)
+                .then(res => res.json())
+                .then(response => {
+                    var expresion = (response.expression);
+                    var numero1 = response.first;
+                    var numero2 = response.second;
+                    var respuesta = response.answer;
+                    var randomizador = getRandomInt(2);
+                    var estatus = 2;
+                    if (randomizador === 1) {
+                        var resultado = response.answer;
+
+                         res.render('division', { expresion, resultado, numero1, numero2, respuesta ,estatus })
+                    } else {
+                        var resultado = getRandomInt(757);
+
+                         res.render('division', { expresion, resultado, numero1, numero2, respuesta ,estatus })
+                    }
+
+
+
+                })
+
+        }
+        
+        
+    }
+    if (eleccio == 1) {
+        console.log('el usuario escogio falso')
+        if (estado == 0) {
+            console.log('el usuario escogio bien')
+            var url = `https://x-math.herokuapp.com/api/div`
+            var resultado = 0;
+            fetch(url)
+                .then(res => res.json())
+                .then(response => {
+                    var expresion = (response.expression);
+                    var numero1 = response.first;
+                    var numero2 = response.second;
+                    var respuesta = response.answer;
+                    var randomizador = getRandomInt(2);
+                    var estatus = 1;
+                    if (randomizador === 1) {
+                        var resultado = response.answer;
+
+                         res.render('division', { expresion, resultado, numero1, numero2, respuesta ,estatus })
+                    } else {
+                        var resultado = getRandomInt(757);
+
+                        res.render('division', { expresion, resultado, numero1, numero2, respuesta ,estatus })
+                    }
+
+
+
+                })
+
+        }else{
+            console.log('el usuario escogio mal')
+            var url = `https://x-math.herokuapp.com/api/div`
+            var resultado = 0;
+            fetch(url)
+                .then(res => res.json())
+                .then(response => {
+                    var expresion = (response.expression);
+                    var numero1 = response.first;
+                    var numero2 = response.second;
+                    var respuesta = response.answer;
+                    var randomizador = getRandomInt(2);
+                    var estatus = 2;
+                    if (randomizador === 1) {
+                        var resultado = response.answer;
+
+                         res.render('division', { expresion, resultado, numero1, numero2, respuesta ,estatus })
+                    } else {
+                        var resultado = getRandomInt(757);
+
+                         res.render('division', { expresion, resultado, numero1, numero2, respuesta ,estatus })
+                    }
+
+
+
+                })
+
+        }
+    }
+
+
+    
+
+})
+
+
+
+
+
+
 app.get('/metodo', (req, response1) => {
     var url = 'https://api.isevenapi.xyz/api/iseven/6/'
     fetch(url)
